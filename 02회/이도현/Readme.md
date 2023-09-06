@@ -1,0 +1,23 @@
+[2화] UI표현하기
+
+# 개요
+1. React는 UI를 렌더링하기위한 js 라이브러리이다. 프레임워크가 아니다.
+2. UI는 버튼,텍스트,이미지,비디오 와 같은 작은 요소로 구성되는데 React를 통해 컴포넌트화 시킬수 있고
+3. 컴포넌트를 통해 효율적으로 React를 작업할 수 있을 것이다.
+
+# 첫번째 컴포넌트
+1. React의 컴포넌트는 마크업으로 뿌릴수 있는 **js함수** 입니다.
+2. React의 컴포넌트의 이름은 대문자로 시작해야 한다. [파스칼 케이스](https://htc-refactor.tistory.com/entry/%EC%BC%80%EC%9D%B4%EC%8A%A4-%EC%8A%A4%ED%83%80%EC%9D%BCCase-Styles-%EC%B9%B4%EB%A9%9C%EC%8B%9D-%EC%BC%80%EB%B0%A5%EC%8B%9D-%ED%8C%8C%EC%8A%A4%EC%B9%BC%EC%8B%9D-%EC%8A%A4%EB%84%A4%EC%9D%B4%ED%81%AC%EC%8B%9D)라고도 부른다고 한다.
+3. 챌린지 2번에 리턴문 고치기 -> 줄 위치 차이로 화면에 이미지가 나오지 않는 이유?
+
+# 컴포넌트를 import하거나 export하는 방법
+
+1. export 와 default export의 차이
+
+**export**
+1. named export는 여러 값을 내보낼때 유용 해야 합니다. 단 내보낸이름을 편집하는것이 불가능합니다 ex) import ... as ... 불가능
+2. 내보니기 시에 이름을 변경하는 방법이 있다.
+
+**default**
+1. default는 어떤이름으로도 가져올수 있습니다. 단 하나만 내보낼수 있다.
+2. export default를 사용할 때 var,let,const는 사용하지 못합니다.
