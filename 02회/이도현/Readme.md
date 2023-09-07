@@ -35,3 +35,30 @@
 # 중괄호가 있는 jsx안에서 자바스크립트 사용하기
 - {}를 통하여 마크업 안에서 객체를 참고를 할수 있습니다.
 - {{}}는 jsx {}(jsx중괄호)안에 있는 js객체입니다.
+
+# 컴포넌트에 props에 전달하기
+- 구조분해할당 
+1. 배열이나 객체의 속성을 해체한 값을 개별변수에 담는 js표현식이다.
+2. ... Rest 속성은 열거형 패턴의 구조분해패턴으로 걸러지지 않는 나머지항목들을 모은다. 
+```js
+
+export default function Profile() {
+    return (
+        <Avatar
+            person={{ name: 'Lin Lanying', imageId: '1bX5QH6' }}
+            size={100}
+        />
+    );
+}
+//서로 다른 파일
+   function Avatar(props) {
+   let person = props.person;
+   let size = props.size;
+   // ...
+   }
+   // Rest속성 예시
+   
+let { a, b, ...rest } = { a: 10, b: 20, c: 30, d: 40 };
+//...rest 는 c와 d의 값을 갇는다.
+
+  ```
