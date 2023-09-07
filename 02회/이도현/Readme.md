@@ -62,3 +62,6 @@ let { a, b, ...rest } = { a: 10, b: 20, c: 30, d: 40 };
 //...rest 는 c와 d의 값을 갇는다.
 
   ```
+3. props는 react 컴포넌트의 유일한 인자다! (props를 통해 img태그의 크기조절이나 색변경 등이 가능하다 사실상 컴포넌트간의 소통담당이다.)
+4. props의 기본값은 부모컴포넌트의 prop이 없거나 할당받는값이 undefined로 전달 될때 사용된다. null이면 상태변환이 어렵다.[참고](https://codesandbox.io/embed/interesting-stonebraker-p3k53x?fontsize=14&hidenavigation=1&theme=dark)
+5. 같은 props 공유하는 컴포넌트를 많이 만드는 것은 비추다 리렌더링 할때 같은 props를 공유하는 컴포넌트도 같이 렌더링 되기 때문에
