@@ -321,3 +321,149 @@ export default function Form() {
 
 
 ## 배열 state 업데이트
+- 배열연산은 배열을 직접 변이하는 메서드 보다는 기존배열 복사후 생성하는 메서드를 사용하자
+  1. 추가: concat [...arr]
+  2. 삭제: filter, slice (배열또는 배열의 일부를 복사)
+  3. 교체: map 
+  4. 정렬: 배열 복사후 다음 처리
+
+- 배열 변경하기
+  - map 함수를 이용하여 새로운 배열을 만듭니다.  ar[0] = 'bird' 와 같은 할당은 원래 배열을 변이하는 것으로
+  이 경우에 map함수를 통하여 변경하도록 하자
+
+문제1
+```js
+import { useState } from 'react';
+
+const initialProducts = [{
+  id: 0,
+  name: 'Baklava',
+  count: 1,
+}, {
+  id: 1,
+  name: 'Cheese',
+  count: 5,
+}, {
+  id: 2,
+  name: 'Spaghetti',
+  count: 2,
+}];
+
+export default function ShoppingCart() {
+  const [
+    products,
+    setProducts
+  ] = useState(initialProducts)
+
+  function handleIncreaseClick(productId) {
+    setProducts(products.map(product => {
+      if (product.id === productId) {
+        return {
+          ...product,
+          count: product.count + 1
+        };
+      } else {
+        return product;
+      }
+    }))
+  }
+  //맵함수를 통해 배열을 재생성하고 id값을 비교 하고 맞으면 +1 클릴할때마다 전체 렌더링
+
+  return (
+    <ul>
+      {products.map(product => (
+        <li key={product.id}>
+          {product.name}
+          {' '}
+          (<b>{product.count}</b>)
+          <button onClick={() => {
+            handleIncreaseClick(product.id);
+          }}>
+            +
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+```
+
+문제2
+```js
+
+import { useState } from 'react';
+
+const initialProducts = [{
+  id: 0,
+  name: 'Baklava',
+  count: 1,
+}, {
+  id: 1,
+  name: 'Cheese',
+  count: 5,
+}, {
+  id: 2,
+  name: 'Spaghetti',
+  count: 2,
+}];
+
+export default function ShoppingCart() {
+  const [
+    products,
+    setProducts
+  ] = useState(initialProducts)
+
+  function handleIncreaseClick(productId) {
+    setProducts(products.map(product => {
+      if (product.id === productId) {
+        return {
+          ...product,
+          count: product.count + 1
+        };
+      } else {
+        return product;
+      }
+    }))
+  }
+  function handleDecreaseClick(productId) {
+    let nextProducts = products.map(product => {
+      if (product.id === productId) {
+        return {
+          ...product,
+          count: product.count - 1
+        };
+      } else {
+        return product;
+      }
+    });
+    nextProducts = nextProducts.filter(p =>
+      p.count > 0
+    );
+    setProducts(nextProducts)
+  }
+
+  return (
+    <ul>
+      {products.map(product => (
+        <li key={product.id}>
+          {product.name}
+          {' '}
+          (<b>{product.count}</b>)
+          <button onClick={() => {
+            handleIncreaseClick(product.id);
+          }}>
+            +
+          </button>
+         <button onClick={() => {
+            handleDecreaseClick(product.id);
+          }}>
+            –
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+//필터를 사용하여 0이상인 count값만 렌더링한다.
+```
