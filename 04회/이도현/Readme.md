@@ -269,6 +269,7 @@ setPerson({
 //   />
 // </label>
 ```
+### 중복된 객체 업데이트 하기
 위와 같은 방법으로 변경점이 있는 객체를 단일 이벤트 헨들러를 사용하면 더 간단히 적용시킬수 있다.
 - 여기서 e.targer.name은  input tag의 name속성을 가리킨다.
 
@@ -317,6 +318,6 @@ export default function Form() {
 [문제2](https://codesandbox.io/s/broken-dust-wslqtv?file=/App.js) 
 [문제3](https://codesandbox.io/s/hardcore-mahavira-47k3td?file=/App.js)
 
-### 중복된 객체 업데이트 하기
+
 
 ## 배열 state 업데이트
