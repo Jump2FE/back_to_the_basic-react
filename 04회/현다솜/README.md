@@ -5,18 +5,10 @@
 컴포넌트를 화면에 표시하기 이전에 React에서 렌더링을 이해해야한다. 해당 과정의 단계를 이해하면 코드가 어떻게 실해되는지 이해할 수 있고 리액트 렌더링 동작에 관해 설명하는데 도움이 된다.
 
 ### UI를 요청하고 제공하는 세 가지 단계
+|1. 렌더링 트리거|2. 컴포넌트 렌더링|3. DOM에 커밋|
+|---|---|---|
+|<img src='https://github.com/Jump2FE/back_to_the_basic-react/assets/60869490/15e3a447-d92d-42cc-b580-2099c2ce4684' width='200' height='200' />|<img src='https://github.com/Jump2FE/back_to_the_basic-react/assets/60869490/02cc92b4-d2f4-4c90-b4a5-0e914d15f21c' width='200' height='200' />|<img src='https://github.com/Jump2FE/back_to_the_basic-react/assets/60869490/beaac31f-b5be-4e1f-97c3-9364b8357e44' width='200' height='200' />|
 
-![i_render-and-commit1.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f076ced0-fa44-460f-a1f6-67fa9565b764/157230bb-a107-4200-8ea1-8f7489e68356/i_render-and-commit1.png)
-
-1. 렌더링 트리거
-
-![i_render-and-commit2.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f076ced0-fa44-460f-a1f6-67fa9565b764/e12cbf1f-ec3a-4f7d-8c9d-55760c58cd95/i_render-and-commit2.png)
-
-2. 컴포넌트 렌더링
-
-![i_render-and-commit3.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f076ced0-fa44-460f-a1f6-67fa9565b764/f98a4b92-1c78-4668-b995-678c30dd520e/i_render-and-commit3.png)
-
-3. DOM에 커밋
 
 ---
 
@@ -160,31 +152,17 @@ function sendMessage(message) {
 
 React가 컴포넌트를 다시 렌더링할 때
 
-![i_render1.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f076ced0-fa44-460f-a1f6-67fa9565b764/c63d1342-cb35-4d59-9a7f-9c76a539d6e7/i_render1.png)
+|<img src='https://github.com/Jump2FE/back_to_the_basic-react/assets/60869490/66b18b7b-ca60-4807-901b-0bf87267c2fc' width='100' height='200' />|<img src='https://github.com/Jump2FE/back_to_the_basic-react/assets/60869490/06e9d0ed-13e8-4d2e-a51f-2277b28d2ed9' width='200' height='200' /> | <img src='https://github.com/Jump2FE/back_to_the_basic-react/assets/60869490/0ab42700-94f2-4e9d-bbab-75bd4478718f' width='300' height='200' />|
+|---|---|---|
+|1. React가 함수를 다시 호출| 2. 함수가 새로운 JSX 스냅샷을 반환| 3. React가 반환한 스냅샷과 일치하도록 화면을 업데이트(DOM tree 업데이트)|
 
-1. React가 함수를 다시 호출
-
-![i_render2.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f076ced0-fa44-460f-a1f6-67fa9565b764/5b1576f7-e68b-43ea-9346-613d20631c54/i_render2.png)
-
-2. 함수가 새로운 JSX 스냅샷을 반환
-
-![i_render3.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f076ced0-fa44-460f-a1f6-67fa9565b764/fcd44ffd-f0b0-443f-a141-7c3aec58606b/i_render3.png)
-
-3. React가 반환한 스냅샷과 일치하도록 화면을 업데이트(DOM tree 업데이트)
 
 컴포넌트의 메모리로써 state는 함수가 반환된 후 사라지는 일반 변수와 다르다. state는 실제 함수 외부에 마치 선반에 있는 것처럼 React 자체에 ‘존재’한다. React가 컴포넌트를 호출하면 특정 렌더링에 대한 state의 스냅샷을 제공한다. 컴포넌트는 해당 렌더링의 state 값을 사용해 계산된 새로운 props 세트와 이벤트 핸들러가 포함된 UI의 스냅샷을 JSX에 반환한다.
 
-![i_state-snapshot1.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f076ced0-fa44-460f-a1f6-67fa9565b764/0d17c400-f0c2-4e96-869f-45fdd33ba842/i_state-snapshot1.png)
+|![image](https://github.com/Jump2FE/back_to_the_basic-react/assets/60869490/d2867658-ff83-41fb-8efc-a1e71df8c50c)|![image](https://github.com/Jump2FE/back_to_the_basic-react/assets/60869490/e3d0f055-c9a8-4b82-83e1-44f9d13c0c0b)|![image](https://github.com/Jump2FE/back_to_the_basic-react/assets/60869490/8ba3e23b-5ff8-44ff-8dfc-d50f66c3f595)|
+|---|---|---|
+|React 에 state를 업데이트 하라고 명령|React가 state 값을 업데이트|React는 상태값의 스냅샷을 컴포넌트에 전달|
 
-React 에 state를 업데이트 하라고 명령
-
-![i_state-snapshot2.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f076ced0-fa44-460f-a1f6-67fa9565b764/dea5e966-7f10-42db-b6ac-47fcb98df5aa/i_state-snapshot2.png)
-
-React가 state 값을 업데이트
-
-![i_state-snapshot3.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f076ced0-fa44-460f-a1f6-67fa9565b764/cb8badc5-2691-4c67-9abd-59352d653c25/i_state-snapshot3.png)
-
-React는 상태값의 스냅샷을 컴포넌트에 전달
 
 ```jsx
 import { useState } from "react";
