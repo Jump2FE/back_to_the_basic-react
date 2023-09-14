@@ -271,6 +271,52 @@ setPerson({
 ```
 위와 같은 방법으로 변경점이 있는 객체를 단일 이벤트 헨들러를 사용하면 더 간단히 적용시킬수 있다.
 - 여기서 e.targer.name은  input tag의 name속성을 가리킨다.
+
+더 간단히 해보자면 immer라이브러리가 있다.
+- immer는 proxy라는 개체로 사용자가 수행하는 작업을 기록합니다. 그래서 뭐가 됐든 draft를 사용하여 편집내용이 포함된 모든 객체를 새로운객체로 생성된다.
+```js
+export default function Form() {
+  const [person, updatePerson] = useImmer({
+    name: 'Niki de Saint Phalle',
+    artwork: {
+      title: 'Blue Nana',
+      city: 'Hamburg',
+      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+    }
+  });
+
+  function handleNameChange(e) {
+    updatePerson(draft => {
+      draft.name = e.target.value;
+    });
+  }
+  function handleImageChange(e) {
+    updatePerson(draft => {
+      draft.artwork.image = e.target.value;
+    });
+  }
+  return (
+          <>
+            <label>
+              Name:
+              <input
+                      value={person.name}
+                      onChange={handleNameChange}
+              />
+            </label>
+            <img
+                    src={person.artwork.image}
+                    alt={person.artwork.title}
+            />
+          </>
+  )};
+//이러한 방법으로 깊이에 상관없이 image에 해당되는 값을 변경한다.
+//immer는 redux에 사용된다고 하는데 사용되는 코드의 양이 방대해져서 그런게 아닐까 라는 생각이 드는데... 그 외에는... 언제 사용이 되는지 잘 모르겠다
+```
+[문제1](https://codesandbox.io/s/little-fast-tvkygl?file=/App.js)
+[문제2](https://codesandbox.io/s/broken-dust-wslqtv?file=/App.js) 
+[문제3](https://codesandbox.io/s/hardcore-mahavira-47k3td?file=/App.js)
+
 ### 중복된 객체 업데이트 하기
 
 ## 배열 state 업데이트
